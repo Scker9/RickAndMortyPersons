@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gray"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/characterAvatarImageView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/startGuideLine"
+        app:layout_constraintBottom_toBottomOf="@id/characterSexTextView"
+        app:layout_constraintTop_toTopOf="@+id/characterNameTextView"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/nameIdentifierTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/nameIdentifier"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/characterNameTextView"
+        app:layout_constraintStart_toEndOf="@+id/characterAvatarImageView"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <TextView
+        android:id="@+id/characterNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/characterRaceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameIdentifierTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Cаня Cаня Cаня Cаня Cаня Cаня Cаня Cаня " />
+
+    <TextView
+        android:id="@+id/characterRaceTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/raceIdentifierTextView"
+        app:layout_constraintTop_toBottomOf="@id/characterNameTextView"
+        tools:text="Русский" />
+
+    <TextView
+        android:id="@+id/raceIdentifierTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/raceIdentifier"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/characterRaceTextView"
+        app:layout_constraintStart_toEndOf="@+id/characterAvatarImageView" />
+
+    <TextView
+        android:id="@+id/sexIdentifierTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/sexIdentifier"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/characterSexTextView"
+        app:layout_constraintStart_toEndOf="@+id/characterAvatarImageView" />
+
+    <TextView
+        android:id="@+id/characterSexTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sexIdentifierTextView"
+        app:layout_constraintTop_toBottomOf="@id/characterRaceTextView"
+        tools:text="Женский" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
