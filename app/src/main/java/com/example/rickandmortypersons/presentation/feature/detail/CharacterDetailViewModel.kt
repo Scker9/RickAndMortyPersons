@@ -1,6 +1,5 @@
 package com.example.rickandmortypersons.presentation.feature.detail
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,16 +18,14 @@ class CharacterDetailViewModel : ViewModel(), KoinComponent {
     val state = MutableLiveData(CharacterDetailState.LOADING)
 
     fun fetchData(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {//(Dispatchers.IO) {
             val response = characterInteractor.getCharacterById(id)
             when (response) {
                 is NetworkResult.Success -> {
-                    Log.d("CharactersViewModel", response.data!!.toString())
                     characterLiveData.postValue(response.data!!)
                     makeShowState()
                 }
                 is NetworkResult.Error -> {
-                    Log.d("CharactersViewModel", response.toString())
                     errorMessage = response.errorMessage ?: "Unknown Error"
                     makeErrorState()
                 }
@@ -36,11 +33,11 @@ class CharacterDetailViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    fun makeShowState() {
+    private fun makeShowState() {
         state.postValue(CharacterDetailState.SHOW)
     }
 
-    fun makeErrorState() {
+    private fun makeErrorState() {
         state.postValue(CharacterDetailState.ERROR)
     }
 }

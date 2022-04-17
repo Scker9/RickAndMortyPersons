@@ -2,11 +2,11 @@ package com.example.rickandmortypersons.data.mappers
 
 import com.example.rickandmortypersons.data.entities.Character
 import com.example.rickandmortypersons.data.source.entities_raw.CharacterRaw
-import com.example.rickandmortypersons.data.source.entities_raw.CharacterResponseRaw
+import com.example.rickandmortypersons.data.source.entities_raw.CharacterPagingRaw
 
 class CharacterResponseRawToCharacterMapper {
-    fun convert(characterResponseRaw: CharacterResponseRaw): List<Character> {
-        return characterResponseRaw.characterRaws.map {
+    fun convert(characterPagingRaw: CharacterPagingRaw): List<Character> {
+        return characterPagingRaw.characterRaws.map {
             Character(
                 id = it.id,
                 name = it.name,

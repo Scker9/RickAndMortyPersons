@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CharacterResponseRaw(
+data class CharacterPagingRaw(
     @SerialName("info")  val info: Info,
     @SerialName("results") val characterRaws: List<CharacterRaw>
 )

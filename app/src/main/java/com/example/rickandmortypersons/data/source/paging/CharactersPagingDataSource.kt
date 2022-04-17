@@ -1,6 +1,5 @@
 package com.example.rickandmortypersons.data.source.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmortypersons.data.entities.Character
@@ -29,7 +28,6 @@ class CharactersPagingDataSource :
 
             if (response.isSuccessful) {
                 val raw = response.body()!!
-                Log.d("CharactersPagingDataSource", Thread.currentThread().toString())
                 val characters = mapper.convert(response.body()!!)
                 val nextPageNumber = raw.info.next?.filter { it.isDigit() }?.toInt()
                 val prevPageNumber = raw.info.prev?.filter { it.isDigit() }?.toInt()

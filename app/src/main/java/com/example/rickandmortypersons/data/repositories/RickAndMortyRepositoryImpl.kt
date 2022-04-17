@@ -1,6 +1,5 @@
 package com.example.rickandmortypersons.data.repositories
 
-import android.util.Log
 import androidx.paging.PagingSource
 import com.example.rickandmortypersons.data.entities.Character
 import com.example.rickandmortypersons.data.mappers.CharacterResponseRawToCharacterMapper
@@ -22,11 +21,17 @@ class RickAndMortyRepositoryImpl : RickAndMortyRepository, KoinComponent {
 
     override suspend fun getCharacterById(id: Int): NetworkResult<Character> {
         val mapper = CharacterResponseRawToCharacterMapper()
-        val response = api.getCharacterById(id)
-        if (response.isSuccessful) {
-            return NetworkResult.Success(mapper.convert(response.body()!!))
-        } else {
-            return NetworkResult.Error(HttpException(response).message())
+        try {
+            val response = api.getCharacterById(id)
+            if (response.isSuccessful) {
+                return NetworkResult.Success(mapper.convert(response.body()!!))
+            } else {
+                return NetworkResult.Error(HttpException(response).message())
+            }
+        } catch (e: HttpException) {
+            return NetworkResult.Error(e.localizedMessage)
+        } catch (e: Exception) {
+            return NetworkResult.Error(e.localizedMessage)
         }
     }
 }
