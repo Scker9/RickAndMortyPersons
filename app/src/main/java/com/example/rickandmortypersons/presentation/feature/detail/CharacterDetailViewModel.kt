@@ -18,7 +18,7 @@ class CharacterDetailViewModel : ViewModel(), KoinComponent {
     val state = MutableLiveData(CharacterDetailState.LOADING)
 
     fun fetchData(id: Int) {
-        viewModelScope.launch {//(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = characterInteractor.getCharacterById(id)
             when (response) {
                 is NetworkResult.Success -> {
