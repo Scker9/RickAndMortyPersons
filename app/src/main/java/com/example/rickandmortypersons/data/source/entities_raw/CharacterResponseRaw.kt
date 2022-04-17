@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CharacterResponseRaw(
     @SerialName("info")  val info: Info,
-    @SerialName("results") val results: List<Result>
+    @SerialName("results") val characterRaws: List<CharacterRaw>
 )

@@ -3,4 +3,7 @@
     <string name="nameIdentifier">Name:</string>
     <string name="raceIdentifier">Race:</string>
     <string name="sexIdentifier">Sex:</string>
+    <string name="last_visited_identifier">Location:</string>
+    <string name="episodesIdentifier">Episodes:</string>
+    <string name="statusIdentifier">Status :</string>
 </resources>

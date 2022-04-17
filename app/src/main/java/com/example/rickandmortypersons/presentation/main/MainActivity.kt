@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.rickandmortypersons.R
 import com.example.rickandmortypersons.presentation.Screens
-import com.example.rickandmortypersons.presentation.feature.CharactersViewModel
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -24,6 +23,6 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     private fun navigateToCharactersFragment() {
         val navigator = AppNavigator(this, R.id.main_container)
         navigatorHolder.setNavigator(navigator)
-        router.newRootScreen(Screens.characterFragment)
+        router.newRootScreen(Screens.charactersFragment)
     }
 }

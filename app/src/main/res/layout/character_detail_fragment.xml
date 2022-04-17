@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/detailProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        tools:visibility="gone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/characterAvatarImageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="48dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nameIdentifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterNameTextView"
+            app:layout_constraintStart_toStartOf="@id/characterAvatarImageView"
+            app:layout_constraintTop_toBottomOf="@id/characterAvatarImageView" />
+
+        <TextView
+            android:id="@+id/characterNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterAvatarImageView"
+            tools:text="Jerry Smith" />
+
+        <TextView
+            android:id="@+id/raceIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/raceIdentifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterRaceTextView"
+            app:layout_constraintStart_toStartOf="@id/nameIdentifierTextView"
+            app:layout_constraintTop_toBottomOf="@id/nameIdentifierTextView" />
+
+        <TextView
+            android:id="@+id/characterRaceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterNameTextView"
+            tools:text="Human" />
+
+        <TextView
+            android:id="@+id/sexIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sexIdentifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterSexTextView"
+            app:layout_constraintStart_toStartOf="@id/raceIdentifierTextView"
+            app:layout_constraintTop_toBottomOf="@id/raceIdentifierTextView" />
+
+        <TextView
+            android:id="@+id/characterSexTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterRaceTextView"
+            tools:text="Male" />
+
+        <TextView
+            android:id="@+id/locationIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_visited_identifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterLocationTextView"
+            app:layout_constraintStart_toStartOf="@id/sexIdentifierTextView"
+            app:layout_constraintTop_toBottomOf="@id/sexIdentifierTextView" />
+
+        <TextView
+            android:id="@+id/characterLocationTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterSexTextView"
+            tools:text="Planet Earth" />
+
+        <TextView
+            android:id="@+id/episodesIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/episodesIdentifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterEpisodesTextView"
+            app:layout_constraintStart_toStartOf="@id/locationIdentifierTextView"
+            app:layout_constraintTop_toBottomOf="@id/locationIdentifierTextView" />
+
+        <TextView
+            android:id="@+id/characterEpisodesTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterLocationTextView"
+            tools:text="66" />
+
+        <TextView
+            android:id="@+id/statusIdentifierTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/statusIdentifier"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/characterStatusTextView"
+            app:layout_constraintStart_toStartOf="@id/episodesIdentifierTextView"
+            app:layout_constraintTop_toBottomOf="@id/episodesIdentifierTextView" />
+
+        <TextView
+            android:id="@+id/characterStatusTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
+            app:layout_constraintTop_toBottomOf="@id/characterEpisodesTextView"
+            tools:text="Alive" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/parametersStartGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="103dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

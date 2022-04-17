@@ -1,7 +1,6 @@
-package com.example.rickandmortypersons.presentation.feature
+package com.example.rickandmortypersons.presentation.feature.characters_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,30 +9,33 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.example.rickandmortypersons.databinding.CharactersFragmentBinding
+import com.example.rickandmortypersons.presentation.Screens
 import com.example.rickandmortypersons.presentation.base.BaseFragment
 import com.example.rickandmortypersons.presentation.decorator.MarginItemDecoration
-import com.example.rickandmortypersons.presentation.feature.adapter.CharactersAdapter
+import com.example.rickandmortypersons.presentation.feature.characters_list.adapter.CharactersAdapter
+import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class CharactersFragment : BaseFragment<CharactersFragmentBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> CharactersFragmentBinding
         get() = CharactersFragmentBinding::inflate
 
+    private val router by inject<Router>()
 
-    private val viewModel: CharactersViewModel by viewModels()
+    private val viewModel by viewModels<CharactersViewModel>()
 
     private val adapter by lazy { CharactersAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.characterRecycler.addItemDecoration(MarginItemDecoration(32))
-        binding.swipeToRefreshLayout.setOnRefreshListener {
-            viewModel.fetchData()
-        }
+        binding.swipeToRefreshLayout.isEnabled = false
+
         adapter.onItemTouch = { id ->
-            Log.d("CharactersFragment", id.toString())
+            navigateToDetail(id)
         }
 
         adapter.addLoadStateListener {
@@ -51,8 +53,12 @@ class CharactersFragment : BaseFragment<CharactersFragmentBinding>() {
     }
 
 
-    fun onError(message: String) {
+    private fun onError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToDetail(characterId: Int) {
+        router.navigateTo(Screens.getCharacterDetailFragment(characterId))
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package com.example.rickandmortypersons.data.source
 
+import com.example.rickandmortypersons.data.source.entities_raw.CharacterRaw
 import com.example.rickandmortypersons.data.source.entities_raw.CharacterResponseRaw
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,5 +13,5 @@ interface RickAndMortyAPI {
     suspend fun getCharactersByPage(@Query("page") page: Int): Response<CharacterResponseRaw>
 
     @GET("character/{id}")
-    suspend fun getCharacterById(@Path("id") id: Int): Response<CharacterResponseRaw>
+    suspend fun getCharacterById(@Path("id") id: Int): Response<CharacterRaw>
 }

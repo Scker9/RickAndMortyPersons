@@ -1,4 +1,4 @@
-package com.example.rickandmortypersons.presentation.feature.adapter
+package com.example.rickandmortypersons.presentation.feature.characters_list.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,7 @@ class CharactersAdapter :
     PagingDataAdapter<Character, CharactersAdapter.CharactersViewHolder>(
         CharacterUIDiffCallback()
     ) {
-    var onItemTouch: ((Long) -> Unit)? = null
+    var onItemTouch: ((Int) -> Unit)? = null
 
     inner class CharactersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.characterNameTextView)
@@ -27,7 +27,7 @@ class CharactersAdapter :
 
         fun bind(character: Character) {
             itemView.setOnClickListener {
-                onItemTouch?.invoke(getItem(absoluteAdapterPosition)!!.id)
+                onItemTouch?.invoke(getItem(absoluteAdapterPosition)!!.id.toInt())
             }
             nameTextView.text = character.name
             raceTextView.text = character.race

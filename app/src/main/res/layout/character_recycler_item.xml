@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/gray"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/gray">
 
     <ImageView
         android:id="@+id/characterAvatarImageView"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintBottom_toBottomOf="@id/characterSexTextView"
+        app:layout_constraintStart_toStartOf="@id/startGuideLine"
         app:layout_constraintTop_toTopOf="@+id/characterNameTextView"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
@@ -36,9 +36,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/characterRaceTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nameIdentifierTextView"
+        app:layout_constraintStart_toEndOf="@+id/parametersStartGuideLine"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cаня Cаня Cаня Cаня Cаня Cаня Cаня Cаня " />
+        tools:text="Jerry Smith" />
 
     <TextView
         android:id="@+id/characterRaceTextView"
@@ -48,9 +48,9 @@
         android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/raceIdentifierTextView"
+        app:layout_constraintStart_toEndOf="@+id/parametersStartGuideLine"
         app:layout_constraintTop_toBottomOf="@id/characterNameTextView"
-        tools:text="Русский" />
+        tools:text="Human" />
 
     <TextView
         android:id="@+id/raceIdentifierTextView"
@@ -80,9 +80,9 @@
         android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sexIdentifierTextView"
+        app:layout_constraintStart_toEndOf="@+id/parametersStartGuideLine"
         app:layout_constraintTop_toBottomOf="@id/characterRaceTextView"
-        tools:text="Женский" />
+        tools:text="Male" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/startGuideLine"
@@ -92,9 +92,10 @@
         app:layout_constraintGuide_begin="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGuideLine"
+        android:id="@+id/parametersStartGuideLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="213dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
