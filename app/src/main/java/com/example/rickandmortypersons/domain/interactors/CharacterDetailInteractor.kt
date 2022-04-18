@@ -11,15 +11,8 @@ class CharacterDetailInteractor : KoinComponent {
     private val characterDetailRepository: CharacterDetailRepository by inject()
     private val mapper = CharacterDetailDomainToCharacterDetailUIMapper()
     suspend fun getCharacterById(id: Int): NetworkResult<CharacterDetailUI> {
-        try {
-            val result = characterDetailRepository.getCharacterById(id)
-            if (result.data != null) {
-                return NetworkResult.Success(mapper.convert(result.data))
-            } else {
-                return NetworkResult.Error((result.errorMessage!!))
-            }
-        } catch (e: Exception) {
-            return NetworkResult.Error(e.localizedMessage)
+        return characterDetailRepository.getCharacterById(id).map {
+            mapper.convert(it)
         }
     }
 }

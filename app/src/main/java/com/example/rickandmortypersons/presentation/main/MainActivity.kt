@@ -1,7 +1,7 @@
 package com.example.rickandmortypersons.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rickandmortypersons.R
 import com.example.rickandmortypersons.presentation.Screens
 import com.github.terrakok.cicerone.NavigatorHolder
