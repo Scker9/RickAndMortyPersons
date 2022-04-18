@@ -22,4 +22,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         return binding.root
     }
 
+    protected abstract fun onError(message: String)
+
 }

@@ -41,13 +41,13 @@ class CharacterDetailFragment : BaseFragment<CharacterDetailFragmentBinding>() {
                     binding.detailConstraint.visibility = View.VISIBLE
                 }
                 CharacterDetailState.ERROR -> {
-                    onError(viewModel.errorMessage)
+                    onError(viewModel.getErrorMsg())
                 }
             }
         }
     }
 
-    private fun onError(message: String) {
+    override fun onError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 

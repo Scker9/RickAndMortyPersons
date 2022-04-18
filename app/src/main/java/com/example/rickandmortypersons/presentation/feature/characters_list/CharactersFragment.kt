@@ -11,8 +11,8 @@ import androidx.paging.LoadState
 import com.example.rickandmortypersons.databinding.CharactersFragmentBinding
 import com.example.rickandmortypersons.presentation.Screens
 import com.example.rickandmortypersons.presentation.base.BaseFragment
-import com.example.rickandmortypersons.presentation.decorator.MarginItemDecoration
 import com.example.rickandmortypersons.presentation.feature.characters_list.adapter.CharactersAdapter
+import com.example.rickandmortypersons.presentation.feature.characters_list.adapter.decorator.MarginItemDecoration
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class CharactersFragment : BaseFragment<CharactersFragmentBinding>() {
     }
 
 
-    private fun onError(message: String) {
+    override fun onError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 

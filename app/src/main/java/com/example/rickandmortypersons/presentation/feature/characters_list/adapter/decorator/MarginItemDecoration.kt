@@ -1,4 +1,4 @@
-package com.example.rickandmortypersons.presentation.decorator
+package com.example.rickandmortypersons.presentation.feature.characters_list.adapter.decorator
 
 import android.graphics.Rect
 import android.view.View

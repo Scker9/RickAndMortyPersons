@@ -1,10 +1,12 @@
 package com.example.rickandmortypersons.di
 
-import com.example.rickandmortypersons.data.repositories.RickAndMortyRepositoryImpl
+import com.example.rickandmortypersons.data.repositories.CharacterDetailRepositoryImpl
+import com.example.rickandmortypersons.data.repositories.CharactersPagingRepositoryImpl
 import com.example.rickandmortypersons.data.source.RickAndMortyAPI
-import com.example.rickandmortypersons.data.source.paging.CharactersPagingDataSource
-import com.example.rickandmortypersons.domain.interactors.CharacterInteractor
-import com.example.rickandmortypersons.domain.repositories.RickAndMortyRepository
+import com.example.rickandmortypersons.domain.interactors.CharacterDetailInteractor
+import com.example.rickandmortypersons.domain.interactors.CharacterPagingInteractor
+import com.example.rickandmortypersons.domain.repositories.CharactersPagingRepository
+import com.example.rickandmortypersons.domain.repositories.CharacterDetailRepository
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -47,17 +49,17 @@ object Modules {
     }
 
     val repositories = module {
-        factory<RickAndMortyRepository> { RickAndMortyRepositoryImpl() }
+        factory<CharactersPagingRepository> { CharactersPagingRepositoryImpl() }
+        factory<CharacterDetailRepository> { CharacterDetailRepositoryImpl() }
+
     }
 
     val interactors = module {
         factory {
-            CharacterInteractor()
+            CharacterPagingInteractor()
         }
-    }
-    val paging = module {
         factory {
-            CharactersPagingDataSource()
+            CharacterDetailInteractor()
         }
     }
 

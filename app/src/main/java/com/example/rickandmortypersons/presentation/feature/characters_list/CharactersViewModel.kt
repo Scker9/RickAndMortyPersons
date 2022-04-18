@@ -5,16 +5,23 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.rickandmortypersons.domain.interactors.CharacterInteractor
+import androidx.paging.map
+import com.example.rickandmortypersons.domain.interactors.CharacterPagingInteractor
+import com.example.rickandmortypersons.domain.mappers.CharacterListDomainToCharacterListUIMapper
+import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class CharactersViewModel : ViewModel(), KoinComponent {
-    private val characterInteractor by inject<CharacterInteractor>()
-
+    private val characterInteractor by inject<CharacterPagingInteractor>()
+    private val mapper = CharacterListDomainToCharacterListUIMapper()
     val pager = Pager(PagingConfig(2)) {
         characterInteractor.getCharactersPaging()
-    }.flow.cachedIn(viewModelScope)
+    }.flow.map { pagingData ->
+        pagingData.map {
+            mapper.convert(it)
+        }
+    }.cachedIn(viewModelScope)
 
 
 }

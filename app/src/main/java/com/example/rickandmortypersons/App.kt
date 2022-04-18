@@ -1,9 +1,8 @@
-package com.example.rickandmortypersons.app
+package com.example.rickandmortypersons
 
 import android.app.Application
 import com.example.rickandmortypersons.di.Modules.interactors
 import com.example.rickandmortypersons.di.Modules.network
-import com.example.rickandmortypersons.di.Modules.paging
 import com.example.rickandmortypersons.di.Modules.repositories
 import com.example.rickandmortypersons.di.Modules.router
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +13,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(applicationContext)
-            modules(listOf(network, router, repositories, interactors, paging))
+            modules(listOf(network, router, repositories, interactors))
         }
     }
 }

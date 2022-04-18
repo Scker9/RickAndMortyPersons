@@ -2,26 +2,22 @@ package com.example.rickandmortypersons.data.source.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.rickandmortypersons.data.entities.Character
-import com.example.rickandmortypersons.data.mappers.CharacterResponseRawToCharacterMapper
+import com.example.rickandmortypersons.data.mappers.CharacterResponseRawToCharacterListDomainMapper
 import com.example.rickandmortypersons.data.source.RickAndMortyAPI
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import com.example.rickandmortypersons.domain.entities.CharacterListDomain
 import retrofit2.HttpException
 
-class CharactersPagingDataSource :
-    PagingSource<Int, Character>(), KoinComponent {
-    private val mapper = CharacterResponseRawToCharacterMapper()
-    private val api: RickAndMortyAPI by inject()
+class CharactersPagingDataSource(private val api: RickAndMortyAPI) :
+    PagingSource<Int, CharacterListDomain>() {
+    private val mapper = CharacterResponseRawToCharacterListDomainMapper()
 
-    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CharacterListDomain>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         val anchorPage = state.closestPageToPosition(anchorPosition) ?: return null
         return anchorPage.prevKey?.plus(1) ?: anchorPage.nextKey?.minus(1)
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
-
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterListDomain> {
         try {
             val pageNumber = params.key ?: 1
             val response = api.getCharactersByPage(pageNumber)

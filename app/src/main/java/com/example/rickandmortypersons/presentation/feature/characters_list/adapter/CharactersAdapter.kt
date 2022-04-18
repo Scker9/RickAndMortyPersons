@@ -1,7 +1,6 @@
 package com.example.rickandmortypersons.presentation.feature.characters_list.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,36 +9,42 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.rickandmortypersons.R
-import com.example.rickandmortypersons.data.entities.Character
+import com.example.rickandmortypersons.databinding.CharacterRecyclerItemBinding
+import com.example.rickandmortypersons.presentation.entities.CharacterListUI
 
 class CharactersAdapter :
-    PagingDataAdapter<Character, CharactersAdapter.CharactersViewHolder>(
+    PagingDataAdapter<CharacterListUI, CharactersAdapter.CharactersViewHolder>(
         CharacterUIDiffCallback()
     ) {
     var onItemTouch: ((Int) -> Unit)? = null
 
-    inner class CharactersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CharactersViewHolder(private val binding: CharacterRecyclerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private val nameTextView: TextView = itemView.findViewById(R.id.characterNameTextView)
         private val raceTextView: TextView = itemView.findViewById(R.id.characterRaceTextView)
         private val sexTextView: TextView = itemView.findViewById(R.id.characterSexTextView)
         private val avatarImageView: ImageView =
             itemView.findViewById(R.id.characterAvatarImageView)
 
-        fun bind(character: Character) {
-            itemView.setOnClickListener {
-                onItemTouch?.invoke(getItem(absoluteAdapterPosition)!!.id.toInt())
+        fun bind(character: CharacterListUI) {
+            with(binding) {
+                root.setOnClickListener {
+                    onItemTouch?.invoke(getItem(absoluteAdapterPosition)!!.id.toInt())
+                }
+                nameTextView.text = character.name
+                raceTextView.text = character.race
+                sexTextView.text = character.gender
+                avatarImageView.load(character.image)
             }
-            nameTextView.text = character.name
-            raceTextView.text = character.race
-            sexTextView.text = character.gender
-            avatarImageView.load(character.image)
+
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         return CharactersViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.character_recycler_item, parent, false)
+            CharacterRecyclerItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
         )
     }
 
@@ -49,19 +54,19 @@ class CharactersAdapter :
     }
 
     private class CharacterUIDiffCallback :
-        DiffUtil.ItemCallback<Character>() {
+        DiffUtil.ItemCallback<CharacterListUI>() {
         override fun areItemsTheSame(
-            oldItem: Character,
-            newItem: Character
+            oldItem: CharacterListUI,
+            newItem: CharacterListUI
         ): Boolean {
-            return oldItem.id == oldItem.id
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Character,
-            newItem: Character
+            oldItem: CharacterListUI,
+            newItem: CharacterListUI
         ): Boolean {
-            return oldItem == oldItem
+            return oldItem == newItem
         }
 
 

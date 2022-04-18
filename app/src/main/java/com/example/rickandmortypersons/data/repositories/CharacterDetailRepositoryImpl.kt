@@ -1,26 +1,19 @@
 package com.example.rickandmortypersons.data.repositories
 
-import androidx.paging.PagingSource
-import com.example.rickandmortypersons.data.entities.Character
-import com.example.rickandmortypersons.data.mappers.CharacterResponseRawToCharacterMapper
+import com.example.rickandmortypersons.data.mappers.CharacterResponseRawToCharacterDetailMapper
 import com.example.rickandmortypersons.data.network_utils.NetworkResult
 import com.example.rickandmortypersons.data.source.RickAndMortyAPI
-import com.example.rickandmortypersons.data.source.paging.CharactersPagingDataSource
-import com.example.rickandmortypersons.domain.repositories.RickAndMortyRepository
+import com.example.rickandmortypersons.domain.entities.CharacterDetailDomain
+import com.example.rickandmortypersons.domain.repositories.CharacterDetailRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import retrofit2.HttpException
 
-class RickAndMortyRepositoryImpl : RickAndMortyRepository, KoinComponent {
-    private val pagingSource: CharactersPagingDataSource by inject()
+class CharacterDetailRepositoryImpl : CharacterDetailRepository, KoinComponent {
     private val api by inject<RickAndMortyAPI>()
+    private val mapper = CharacterResponseRawToCharacterDetailMapper()
 
-    override fun getCharactersPaging(): PagingSource<Int, Character> {
-        return pagingSource
-    }
-
-    override suspend fun getCharacterById(id: Int): NetworkResult<Character> {
-        val mapper = CharacterResponseRawToCharacterMapper()
+    override suspend fun getCharacterById(id: Int): NetworkResult<CharacterDetailDomain> {
         try {
             val response = api.getCharacterById(id)
             if (response.isSuccessful) {
