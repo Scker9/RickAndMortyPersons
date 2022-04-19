@@ -3,8 +3,9 @@ package com.example.rickandmortypersons.presentation.feature.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortypersons.data.network_utils.NetworkResult
 import com.example.rickandmortypersons.domain.interactors.CharacterDetailInteractor
+import com.example.rickandmortypersons.domain.mappers.CharacterDetailDomainToCharacterDetailUIMapper
+import com.example.rickandmortypersons.domain.validation.CharacterDetailValidationResult
 import com.example.rickandmortypersons.presentation.entities.CharacterDetailUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,16 +17,21 @@ class CharacterDetailViewModel : ViewModel(), KoinComponent {
     private var errorMessage: String? = null
     val characterLiveData = MutableLiveData<CharacterDetailUI>()
     val state = MutableLiveData(CharacterDetailState.LOADING)
+    private val mapper = CharacterDetailDomainToCharacterDetailUIMapper()
 
     fun fetchData(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val response = characterInteractor.getCharacterById(id)) {
-                is NetworkResult.Success -> {
-                    characterLiveData.postValue(response.data!!)
+            when (val result = characterInteractor.getCharacterById(id)) {
+                is CharacterDetailValidationResult.Success -> {
+                    characterLiveData.postValue(mapper.convert(result.data!!))
                     makeShowState()
                 }
-                is NetworkResult.Error -> {
-                    errorMessage = response.errorMessage ?: "Unknown Error"
+                is CharacterDetailValidationResult.NetworkError -> {
+                    errorMessage = result.message
+                    makeErrorState()
+                }
+                is CharacterDetailValidationResult.OtherError -> {
+                    errorMessage = result.message
                     makeErrorState()
                 }
             }

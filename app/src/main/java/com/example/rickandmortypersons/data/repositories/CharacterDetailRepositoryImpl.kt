@@ -19,12 +19,12 @@ class CharacterDetailRepositoryImpl : CharacterDetailRepository, KoinComponent {
             if (response.isSuccessful) {
                 return NetworkResult.Success(mapper.convert(response.body()!!))
             } else {
-                return NetworkResult.Error(HttpException(response).message())
+                return NetworkResult.Error(HttpException(response))
             }
         } catch (e: HttpException) {
-            return NetworkResult.Error(e.localizedMessage)
+            return NetworkResult.Error(e)
         } catch (e: Exception) {
-            return NetworkResult.Error(e.localizedMessage)
+            return NetworkResult.Error(e)
         }
     }
 }

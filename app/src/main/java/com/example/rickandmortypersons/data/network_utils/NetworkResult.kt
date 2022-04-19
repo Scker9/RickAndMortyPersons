@@ -2,19 +2,9 @@ package com.example.rickandmortypersons.data.network_utils
 
 sealed class NetworkResult<T>(
     val data: T? = null,
-    val errorMessage: String? = null
+    val error: Exception? = null
 ) {
     class Success<T>(data: T) : NetworkResult<T>(data)
-    class Error<T>(errorMessage: String, data: T? = null) : NetworkResult<T>(data, errorMessage)
+    class Error<T>(exception: Exception, data: T? = null) : NetworkResult<T>(data, exception)
 
-    inline fun <R> map(transform: ((T) -> R)): NetworkResult<R> {
-        return when (this) {
-            is Success -> {
-                Success(transform(this.data!!))
-            }
-            is Error -> {
-                Error(this.errorMessage!!)
-            }
-        }
-    }
 }
