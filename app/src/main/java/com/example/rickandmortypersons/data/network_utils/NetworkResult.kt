@@ -13,12 +13,8 @@ sealed class NetworkResult<T>(
                 Success(transform(this.data!!))
             }
             is Error -> {
-                Error(this.errorMessage ?: UNKNOWN_ERROR)
+                Error(this.errorMessage!!)
             }
         }
-    }
-
-    companion object {
-        const val UNKNOWN_ERROR = "Unknown Error"
     }
 }
