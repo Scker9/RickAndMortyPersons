@@ -8,8 +8,8 @@
 
     <ProgressBar
         android:id="@+id/detailProgressBar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
         android:layout_gravity="center"
         android:layout_weight="1"
         tools:visibility="gone" />
@@ -23,155 +23,118 @@
 
         <ImageView
             android:id="@+id/characterAvatarImageView"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_margin="16dp"
-            android:layout_marginTop="48dp"
-            android:scaleType="centerCrop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/character_avatar_margin"
+            android:minHeight="@dimen/character_avatar_min_size"
             app:layout_constraintBottom_toTopOf="@id/characterNameTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_height="300dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/nameIdentifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterNameTextView"
             app:layout_constraintStart_toStartOf="@id/characterAvatarImageView"
             app:layout_constraintTop_toBottomOf="@id/characterAvatarImageView" />
 
         <TextView
             android:id="@+id/characterNameTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:textSize="20sp"
+            style="@style/DescriptionStyle"
             app:layout_constraintBottom_toTopOf="@id/characterRaceTextView"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterAvatarImageView"
             tools:text="Jerry Smith" />
 
         <TextView
             android:id="@+id/raceIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/raceIdentifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterRaceTextView"
             app:layout_constraintStart_toStartOf="@id/nameIdentifierTextView"
             app:layout_constraintTop_toBottomOf="@id/nameIdentifierTextView" />
 
         <TextView
             android:id="@+id/characterRaceTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/characterSexTextView"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            style="@style/DescriptionStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterNameTextView"
             tools:text="Human" />
 
         <TextView
             android:id="@+id/sexIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/sexIdentifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterSexTextView"
             app:layout_constraintStart_toStartOf="@id/raceIdentifierTextView"
             app:layout_constraintTop_toBottomOf="@id/raceIdentifierTextView" />
 
         <TextView
             android:id="@+id/characterSexTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/characterLocationTextView"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            style="@style/DescriptionStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterRaceTextView"
             tools:text="Male" />
 
         <TextView
             android:id="@+id/locationIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/last_visited_identifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterLocationTextView"
             app:layout_constraintStart_toStartOf="@id/sexIdentifierTextView"
             app:layout_constraintTop_toBottomOf="@id/sexIdentifierTextView" />
 
         <TextView
             android:id="@+id/characterLocationTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/characterEpisodesTextView"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            style="@style/DescriptionStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterSexTextView"
             tools:text="Planet Earth" />
 
         <TextView
             android:id="@+id/episodesIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/episodesIdentifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterEpisodesTextView"
             app:layout_constraintStart_toStartOf="@id/locationIdentifierTextView"
             app:layout_constraintTop_toBottomOf="@id/locationIdentifierTextView" />
 
         <TextView
             android:id="@+id/characterEpisodesTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/characterStatusTextView"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            style="@style/DescriptionStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterLocationTextView"
             tools:text="66" />
 
         <TextView
             android:id="@+id/statusIdentifierTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/IdentifierStyle"
             android:text="@string/statusIdentifier"
-            android:textSize="20sp"
             app:layout_constraintBaseline_toBaselineOf="@id/characterStatusTextView"
             app:layout_constraintStart_toStartOf="@id/episodesIdentifierTextView"
             app:layout_constraintTop_toBottomOf="@id/episodesIdentifierTextView" />
 
         <TextView
             android:id="@+id/characterStatusTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@id/characterAvatarImageView"
+            style="@style/DescriptionStyle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/parametersStartGuideLine"
             app:layout_constraintTop_toBottomOf="@id/characterEpisodesTextView"
             tools:text="Alive" />
 
-        <androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Barrier
             android:id="@+id/parametersStartGuideLine"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="103dp" />
+            app:layout_constraintStart_toEndOf="@id/episodesIdentifierTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
